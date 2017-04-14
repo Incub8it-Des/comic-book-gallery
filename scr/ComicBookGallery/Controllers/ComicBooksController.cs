@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,10 +9,14 @@ namespace ComicBookGallery.Controllers
 {
     public class ComicBooksController : Controller
     {
-        public ContentResult Detail()
+        public ActionResult Detail()
         {
-            return new ContentResult()
-                { Content = "Hello from the Comic Books controller!" };
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Monday)
+                {
+                return Redirect("/");
+                }
+
+            return Content("Hello from the Comic Books controller!");
         }
     }
 }

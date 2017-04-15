@@ -23,6 +23,8 @@ namespace ComicBookGallery.Controllers
                 "Letters: Chris Eliopoulos"
             };
 
+
+
             return View();
         }
     }

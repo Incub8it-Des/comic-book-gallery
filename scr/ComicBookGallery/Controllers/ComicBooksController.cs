@@ -4,16 +4,27 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
+using ComicBookGallery.Data;
 using ComicBookGallery.Models;
 
 namespace ComicBookGallery.Controllers
 {
     public class ComicBooksController : Controller
     {
-        public ActionResult Detail()
-        {
-            var comicBook = new ComicBook();
+        private ComicBookRepository _comicBookRepository = null;
 
+        public ComicBooksController()
+        {
+            _comicBookRepository = new ComicBookRepository();
+        }
+
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var comicBook = _comicBookRepository.GetComicBook(id.Value);
 
             return View(comicBook);
         }
